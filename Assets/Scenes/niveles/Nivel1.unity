@@ -230,7 +230,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.441875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 1199539147}
   - component: {fileID: 1199539146}
   - component: {fileID: 1199539145}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3844,7 +3844,7 @@ GameObject:
   - component: {fileID: 1566904346}
   - component: {fileID: 1566904351}
   - component: {fileID: 1566904350}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Personaje
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3864,6 +3864,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5
+  fuerzaSalto: 11
+  saltosMaximos: 1
+  capaSuelo:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!95 &1566904347
 Animator:
   serializedVersion: 5
@@ -3946,7 +3951,7 @@ Transform:
   m_GameObject: {fileID: 1566904345}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.37, y: -3.305, z: 0}
+  m_LocalPosition: {x: -9.26, y: -3.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3967,7 +3972,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
