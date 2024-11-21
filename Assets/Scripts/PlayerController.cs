@@ -10,18 +10,22 @@ public class PlayerController : MonoBehaviour
     private bool mirandoDerecha = true;
     private BoxCollider2D boxCollider;
     public LayerMask CapaSuelo;
-    private bool estaEnSuelo = false;  // Detecta si está tocando el suelo
+    private bool estaEnSuelo = false; // Detecta si está tocando el suelo
+    private Animator Animator;
 
-    // Límites del área de juego
-    public float limiteIzquierdo;
-    public float limiteDerecho;
-    public float limiteSuperior;
-    public float limiteInferior;
+    // Límites automáticos del área de juego
+    private float limiteIzquierdo;
+    private float limiteDerecho;
+    private float limiteSuperior;
+    private float limiteInferior;
 
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        Animator = GetComponent<Animator>();
+        // Calcular los límites basados en la cámara
+        CalcularLimites();
     }
 
     void Update()
@@ -34,6 +38,16 @@ public class PlayerController : MonoBehaviour
     void ProcesarMovimiento()
     {
         float inputMovimiento = Input.GetAxis("Horizontal");
+
+        if (inputMovimiento != 0f)
+        {
+            Animator.SetBool("estaCorriendo", true);
+        }
+        else
+        {
+            Animator.SetBool("estaCorriendo", false);
+        }
+
         rigidBody.velocity = new Vector2(inputMovimiento * velocidad, rigidBody.velocity.y);
         GestionarOrientacion(inputMovimiento);
     }
@@ -49,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (((1 << collision.gameObject.layer) & CapaSuelo) != 0)  // Si está tocando una capa de suelo
+        if (((1 << collision.gameObject.layer) & CapaSuelo) != 0) // Si está tocando una capa de suelo
         {
             estaEnSuelo = true;
             Debug.Log("El personaje está en el suelo.");
@@ -71,7 +85,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && estaEnSuelo)
         {
             rigidBody.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
-            estaEnSuelo = false;  // Evitar saltos dobles
+            estaEnSuelo = false; // Evitar saltos dobles
             Debug.Log("Salto realizado.");
         }
     }
@@ -87,5 +101,18 @@ public class PlayerController : MonoBehaviour
                 transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
             }
         }
+    }
+
+    void CalcularLimites()
+    {
+        Camera camara = Camera.main;
+        float altura = 2f * camara.orthographicSize; // Altura de la cámara
+        float ancho = altura * camara.aspect; // Ancho de la cámara
+
+        // Definir límites basados en la posición y el tamaño de la cámara
+        limiteIzquierdo = camara.transform.position.x - ancho / 2f;
+        limiteDerecho = camara.transform.position.x + ancho / 2f;
+        limiteInferior = camara.transform.position.y - altura / 2f;
+        limiteSuperior = camara.transform.position.y + altura / 2f;
     }
 }
