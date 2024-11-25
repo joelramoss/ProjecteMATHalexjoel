@@ -17,15 +17,32 @@ public class PlayerController : MonoBehaviour
     private float limiteIzquierdo;
     private float limiteDerecho;
     private float limiteSuperior;
-    private float limiteInferior;
+    private float limiteInferior = -11f;  // Establecer el límite inferior en -11
+
+    // Posición inicial del jugador
+    private Vector2 posicionInicial;
+
+    // Referencia al enemigo
+    public GameObject enemigo;  // Asegúrate de asignar esto desde el Inspector
 
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         Animator = GetComponent<Animator>();
+
+        // Guardar la posición inicial del personaje (la posición al inicio del juego)
+        posicionInicial = transform.position;
+
         // Calcular los límites basados en la cámara
         CalcularLimites();
+        Debug.Log("Posición Inicial: " + posicionInicial);  // Verifica la posición inicial
+
+        // Asegurarse de que el enemigo esté inicialmente desactivado
+        if (enemigo != null)
+        {
+            enemigo.SetActive(false);  // Desactiva el enemigo al inicio
+        }
     }
 
     void Update()
@@ -33,6 +50,26 @@ public class PlayerController : MonoBehaviour
         ProcesarMovimiento();
         ProcesarSalto();
         LimitarMovimiento();
+
+        // Verificar si el personaje ha tocado el límite inferior y restablecer la posición
+        if (transform.position.y < limiteInferior)
+        {
+            Debug.Log("¡El jugador ha caído fuera del área!");  // Verifica si está cayendo
+            RestablecerPosicion();
+        }
+
+        // Verificar si el jugador pasa por x = 11.77 y activar el enemigo
+        if (transform.position.x >= 11.77f && enemigo != null && !enemigo.activeSelf)
+        {
+            ActivarEnemigo();
+        }
+
+        // Verificar si el jugador pasa por y = -10 y restablecer la posición
+        if (transform.position.y <= -11)
+        {
+            Debug.Log("¡El jugador ha cruzado el límite y!");
+            transform.position = new Vector2(-25.36f, -5.16f);  // Volver a la posición X = -25.36 y Y = -5.16
+        }
     }
 
     void ProcesarMovimiento()
@@ -54,9 +91,11 @@ public class PlayerController : MonoBehaviour
 
     void LimitarMovimiento()
     {
-        // Limitar la posición del jugador en los ejes X e Y para que no se salga de los bordes
+        // Limitar la posición del jugador en el eje X e Y solo para los límites que deseas mantener
         float xPos = Mathf.Clamp(transform.position.x, limiteIzquierdo, limiteDerecho);
-        float yPos = Mathf.Clamp(transform.position.y, limiteInferior, limiteSuperior);
+
+        // No limitar el eje Y hacia arriba
+        float yPos = Mathf.Max(transform.position.y, limiteInferior);
 
         transform.position = new Vector2(xPos, yPos);
     }
@@ -112,7 +151,23 @@ public class PlayerController : MonoBehaviour
         // Definir límites basados en la posición y el tamaño de la cámara
         limiteIzquierdo = camara.transform.position.x - ancho / 2f;
         limiteDerecho = camara.transform.position.x + ancho / 2f;
-        limiteInferior = camara.transform.position.y - altura / 2f;
         limiteSuperior = camara.transform.position.y + altura / 2f;
+
+        Debug.Log("Limites calculados: " + limiteIzquierdo + ", " + limiteDerecho + ", " + limiteSuperior);
+    }
+
+    // Función para restablecer la posición a la inicial
+    void RestablecerPosicion()
+    {
+        transform.position = posicionInicial;  // Restaurar la posición inicial
+        rigidBody.velocity = Vector2.zero;  // Detener cualquier movimiento residual
+        Debug.Log("El personaje ha caído fuera del área y ha vuelto a la posición inicial.");
+    }
+
+    // Activar el enemigo cuando se alcanza la posición deseada
+    void ActivarEnemigo()
+    {
+        enemigo.SetActive(true);  // Activa el enemigo
+        Debug.Log("Enemigo activado en posición X: " + transform.position.x);
     }
 }
