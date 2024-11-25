@@ -16610,6 +16610,7 @@ GameObject:
   - component: {fileID: 991590469}
   - component: {fileID: 991590468}
   - component: {fileID: 991590467}
+  - component: {fileID: 991590470}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -16691,6 +16692,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991590470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991590466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e888b081d8d33b4cae872492b5e2b68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1081549837}
+  offset: {x: 0, y: 0, z: -10}
+  smoothSpeed: 0.125
 --- !u!1 &1081549831
 GameObject:
   m_ObjectHideFlags: 0
@@ -16866,7 +16882,7 @@ Transform:
   m_GameObject: {fileID: 1081549831}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.98, y: -5.37, z: 0}
+  m_LocalPosition: {x: -22.88, y: -5.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17553,7 +17569,6 @@ GameObject:
   - component: {fileID: 1842731125}
   - component: {fileID: 1842731124}
   - component: {fileID: 1842731123}
-  - component: {fileID: 1842731128}
   m_Layer: 6
   m_Name: Enemigo
   m_TagString: Untagged
@@ -17643,26 +17658,12 @@ Transform:
   m_GameObject: {fileID: 1842731121}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.68, y: 0.72, z: 0}
+  m_LocalPosition: {x: 31.68, y: 1.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1842731128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842731121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67534e6115b489e4d807264751684617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jugador: {fileID: 1081549831}
-  velocidadMovimiento: 2
 --- !u!1 &2016773825
 GameObject:
   m_ObjectHideFlags: 0
