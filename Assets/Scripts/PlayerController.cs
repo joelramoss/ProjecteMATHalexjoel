@@ -17,7 +17,10 @@ public class PlayerController : MonoBehaviour
     private float limiteIzquierdo;
     private float limiteDerecho;
     private float limiteSuperior;
-    private float limiteInferior = -11f;  // Establecer el límite inferior en -11
+    private float limiteInferior = -11f;  
+    
+    public  int vida = 3;
+    // Establecer el límite inferior en -11
 
     // Posición inicial del jugador
     private Vector2 posicionInicial;
