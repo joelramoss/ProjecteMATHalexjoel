@@ -14,4 +14,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jugar.unity
     guid: 42794474f0722c8489f9f3b40d6c0574
+  - enabled: 1
+    path: Assets/Scenes/niveles/Nivel1.unity
+    guid: 374c379988aa3ed49bf0560e7e8130f0
+  - enabled: 1
+    path: Assets/Scenes/niveles/Nivel2.unity
+    guid: 3142484dd6696294ab919a92e95f7a53
+  - enabled: 1
+    path: Assets/Scenes/niveles/Nivel3.unity
+    guid: 90866bf31d65cda40a1ab10da1e6d9d6
+  - enabled: 1
+    path: Assets/Scenes/niveles/Nivel4.unity
+    guid: 3c477c3314c97944bb2bdde06219a671
+  - enabled: 1
+    path: Assets/Scenes/niveles/Nivel5.unity
+    guid: bcf564f57b81623488af6ab93f9032e8
+  - enabled: 1
+    path: Assets/Scenes/niveles/Nivel6.unity
+    guid: 6e3608120133e1844b4d6ac3977468da
+  - enabled: 1
+    path: Assets/Scenes/niveles/Nivel7.unity
+    guid: 2a62dd9af43547947ba3d1edc0f854e7
+  - enabled: 1
+    path: Assets/Scenes/niveles/Nivel8.unity
+    guid: 6587c9185392b25469ddd92055d16a55
+  - enabled: 1
+    path: Assets/Scenes/niveles/Nivel9.unity
+    guid: a4a47c9b95edb0e45a68207e16d61dc2
+  - enabled: 1
+    path: Assets/Scenes/niveles/Nivel10.unity
+    guid: 3820c550c9654de4093017478d14d530
   m_configObjects: {}

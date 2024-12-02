@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         posicionInicial = transform.position;
 
         // Calcular los límites basados en la cámara
-        CalcularLimites();
+        //CalcularLimites();
         Debug.Log("Posición Inicial: " + posicionInicial);  // Verifica la posición inicial
 
         // Asegurarse de que el enemigo esté inicialmente desactivado
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         ProcesarMovimiento();
         ProcesarSalto();
-        LimitarMovimiento();
+       // LimitarMovimiento();
 
         // Verificar si el personaje ha tocado el límite inferior y restablecer la posición
         if (transform.position.y < limiteInferior)
