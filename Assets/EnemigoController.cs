@@ -10,23 +10,23 @@ public class EnemigoController : MonoBehaviour
     private bool mirandoDerecha = false; // Si es true, mira a la derecha; si es false, mira a la izquierda
 
     public float moveSpeed = 2f; // Velocidad de movimiento
-    public Vector2 moveDirection = Vector2.left; // Dirección inicial del movimiento
+    public Vector2 moveDirection = Vector2.left; // Direcciï¿½n inicial del movimiento
 
     void Start()
     {
-        // Obtén los componentes necesarios
+        // Obtï¿½n los componentes necesarios
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        // Verifica si los componentes están asignados correctamente
+        // Verifica si los componentes estï¿½n asignados correctamente
         if (animator == null)
         {
-            Debug.LogError("No se encontró un componente Animator en el GameObject.");
+            Debug.LogError("No se encontrï¿½ un componente Animator en el GameObject.");
         }
 
         if (rb == null)
         {
-            Debug.LogError("No se encontró un componente Rigidbody2D en el GameObject.");
+            Debug.LogError("No se encontrï¿½ un componente Rigidbody2D en el GameObject.");
         }
     }
 
@@ -36,13 +36,12 @@ public class EnemigoController : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool("isMoving", isMoving);
-            animator.SetBool("isAttacking", isAttacking);
         }
 
-        // Lógica de movimiento
+        // Logica de movimiento
         if (isMoving)
         {
-            // Movimiento continuo hacia la dirección actual
+            // Movimiento continuo hacia la direcciï¿½n actual
             rb.velocity = moveDirection * moveSpeed;
         }
         else
@@ -71,15 +70,15 @@ public class EnemigoController : MonoBehaviour
     {
         if (mirandoDerecha)
         {
-            // Mirando a la derecha: escala negativa en X (invertido según tu configuración inicial)
+            // Mirando a la derecha: escala negativa en X (invertido segï¿½n tu configuraciï¿½n inicial)
             transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
-            moveDirection = Vector2.right; // Cambia la dirección del movimiento hacia la derecha
+            moveDirection = Vector2.right; // Cambia la direcciï¿½n del movimiento hacia la derecha
         }
         else
         {
             // Mirando a la izquierda: escala positiva en X
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
-            moveDirection = Vector2.left; // Cambia la dirección del movimiento hacia la izquierda
+            moveDirection = Vector2.left; // Cambia la direcciï¿½n del movimiento hacia la izquierda
         }
     }
 
