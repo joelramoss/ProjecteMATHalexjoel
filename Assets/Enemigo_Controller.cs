@@ -1,10 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemigoController : MonoBehaviour
+public class Enemigo_Controller : MonoBehaviour
 {
-    // Componentes
-    private Animator animator;
+     private Animator animator;
     private Rigidbody2D rb;
     private GestorPreguntas gestorPreguntas; // Referencia al script GestorPreguntas
 
@@ -16,9 +17,10 @@ public class EnemigoController : MonoBehaviour
     public float moveSpeed = 2f; // Velocidad del movimiento
     public Vector2 moveDirection = Vector2.left; // Dirección inicial del movimiento
 
+    // Start is called before the first frame update
     void Start()
     {
-        // Obtener componentes necesarios
+         // Obtener componentes necesarios
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         gestorPreguntas = FindObjectOfType<GestorPreguntas>();
@@ -32,12 +34,13 @@ public class EnemigoController : MonoBehaviour
 
         if (gestorPreguntas == null)
             Debug.LogError("GestorPreguntas no encontrado en la escena. Asegúrate de que está presente.");
+    
     }
 
+    // Update is called once per frame
     void Update()
     {
-        // Control de animaciones
-        if (animator != null)
+           if (animator != null)
             animator.SetBool("isMoving", isMoving);
 
         // Lógica de movimiento
@@ -75,8 +78,7 @@ public class EnemigoController : MonoBehaviour
             GestionarOrientacion();
         }
     }
-
-    void GestionarOrientacion()
+     void GestionarOrientacion()
     {
         if (mirandoDerecha)
         {
