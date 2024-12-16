@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/niveles/Nivel4.unity
     guid: 3c477c3314c97944bb2bdde06219a671
   - enabled: 1
-    path: Assets/Scenes/niveles/Nivel5.unity
+    path: Assets/Scenes/niveles/Nivel9.unity
     guid: bcf564f57b81623488af6ab93f9032e8
   - enabled: 1
     path: Assets/Scenes/niveles/Nivel6.unity
@@ -39,7 +39,7 @@ EditorBuildSettings:
     path: Assets/Scenes/niveles/Nivel8.unity
     guid: 6587c9185392b25469ddd92055d16a55
   - enabled: 1
-    path: Assets/Scenes/niveles/Nivel9.unity
+    path: Assets/Scenes/niveles/Nivel5.unity
     guid: a4a47c9b95edb0e45a68207e16d61dc2
   - enabled: 1
     path: Assets/Scenes/niveles/Nivel10.unity

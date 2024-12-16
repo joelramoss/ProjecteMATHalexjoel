@@ -25,8 +25,6 @@ public class PlayerController : MonoBehaviour
     // Posición inicial del jugador
     private Vector2 posicionInicial;
 
-    // Referencia al enemigo
-    public GameObject enemigo;  // Asegúrate de asignar esto desde el Inspector
 
     private void Start()
     {
@@ -41,38 +39,12 @@ public class PlayerController : MonoBehaviour
         //CalcularLimites();
         Debug.Log("Posición Inicial: " + posicionInicial);  // Verifica la posición inicial
 
-        // Asegurarse de que el enemigo esté inicialmente desactivado
-        if (enemigo != null)
-        {
-            enemigo.SetActive(false);  // Desactiva el enemigo al inicio
-        }
     }
 
     void Update()
     {
         ProcesarMovimiento();
         ProcesarSalto();
-       // LimitarMovimiento();
-
-        // Verificar si el personaje ha tocado el límite inferior y restablecer la posición
-        if (transform.position.y < limiteInferior)
-        {
-            Debug.Log("¡El jugador ha caído fuera del área!");  // Verifica si está cayendo
-            RestablecerPosicion();
-        }
-
-        // Verificar si el jugador pasa por x = 11.77 y activar el enemigo
-        if (transform.position.x >= 11.77f && enemigo != null && !enemigo.activeSelf)
-        {
-            ActivarEnemigo();
-        }
-
-        // Verificar si el jugador pasa por y = -10 y restablecer la posición
-        if (transform.position.y <= -11)
-        {
-            Debug.Log("¡El jugador ha cruzado el límite y!");
-            transform.position = new Vector2(-25.36f, -5.16f);  // Volver a la posición X = -25.36 y Y = -5.16
-        }
     }
 
     void ProcesarMovimiento()
@@ -170,10 +142,4 @@ public class PlayerController : MonoBehaviour
 
     
 
-    // Activar el enemigo cuando se alcanza la posición deseada
-    void ActivarEnemigo()
-    {
-        enemigo.SetActive(true);  // Activa el enemigo
-        Debug.Log("Enemigo activado en posición X: " + transform.position.x);
-    }
 }

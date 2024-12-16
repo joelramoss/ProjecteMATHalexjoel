@@ -53,31 +53,28 @@ public class Enemigo_Controller : MonoBehaviour
             rb.velocity = Vector2.zero; // Detener movimiento
         }
     }
-    public void OnTriggerEnter2D(Collider2D other)
+public void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Player"))
     {
-        // Detecta si el trigger es "Player" y muestra la pregunta
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Player detectado. Mostrando pregunta.");
-            gestorPreguntas.MostrarPregunta();
+        Debug.Log("Player detectado. Mostrando pregunta.");
+        gestorPreguntas.MostrarPregunta(this); // Pasar este enemigo como referencia
 
-            // Opcional: Detener al enemigo después de activar la pregunta
-            isMoving = false;
-            rb.velocity = Vector2.zero;
-        }
-
-        // Detecta otros triggers para cambiar orientación
-        else if (other.CompareTag("TriggerIzquierda"))
-        {
-            mirandoDerecha = true;
-            GestionarOrientacion();
-        }
-        else if (other.CompareTag("TriggerDerecha"))
-        {
-            mirandoDerecha = false;
-            GestionarOrientacion();
-        }
+        isMoving = false; // Opcional: detener el movimiento
+        rb.velocity = Vector2.zero;
     }
+    else if (other.CompareTag("TriggerIzquierda"))
+    {
+        mirandoDerecha = true;
+        GestionarOrientacion();
+    }
+    else if (other.CompareTag("TriggerDerecha"))
+    {
+        mirandoDerecha = false;
+        GestionarOrientacion();
+    }
+}
+
      void GestionarOrientacion()
     {
         if (mirandoDerecha)

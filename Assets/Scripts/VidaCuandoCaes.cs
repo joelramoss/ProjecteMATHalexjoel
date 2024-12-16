@@ -29,6 +29,10 @@ public class VidaCuandoCaes : MonoBehaviour
                     Debug.LogError("No se encontró el script Barravida en la escena.");
                 }
 
+                // Devolver al jugador a la posición específica
+                playerController.transform.position = new Vector2(-25.36f, -5.16f);
+                Debug.Log("Jugador devuelto a la posición inicial.");
+
                 // Verificar si la vida llega a 0
                 if (playerController.vida <= 0)
                 {

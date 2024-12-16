@@ -3,6 +3,7 @@ using UnityEngine;
 public class TriggerPregunta : MonoBehaviour
 {
     private GestorPreguntas gestorPreguntas;  // Referencia al script GestorPreguntas
+    public Enemigo_Controller enemigo;       // Referencia al enemigo asignada en el Inspector
 
     void Start()
     {
@@ -24,8 +25,8 @@ public class TriggerPregunta : MonoBehaviour
         {
             Debug.Log("Player entró en el trigger. Mostrando pregunta.");
 
-            // Mostrar la pregunta
-            gestorPreguntas.MostrarPregunta();
+            // Mostrar la pregunta y pasar el enemigo asignado
+            gestorPreguntas.MostrarPregunta(enemigo);
 
             // Desactivar el trigger para que no se active nuevamente
             GetComponent<Collider2D>().enabled = false;  // Desactiva el collider 2D

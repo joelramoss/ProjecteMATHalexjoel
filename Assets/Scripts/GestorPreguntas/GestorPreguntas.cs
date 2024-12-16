@@ -10,169 +10,171 @@ public class GestorPreguntas : MonoBehaviour
     public Button[] botonesOpciones;
     public PlayerController playerController;
 
-   
+    private Enemigo_Controller enemigoActual;
+
 
     // Definición de preguntas, opciones y respuestas correctas directamente en este script
-    private string[] preguntas = {
-    "¿Cuál es el resultado de 5 + 3?",
-    "¿Qué número es el doble de 6?",
-    "¿Cuánto es 12 dividido entre 4?",
-    "Si un triángulo tiene un ángulo de 90°, ¿cómo se llama?",
-    "¿Cuál es el valor de π (pi) con dos decimales?",
-    "Si x + 3 = 8, ¿cuál es el valor de x?",
-    "¿Cuál es el área de un cuadrado con lados de 4 cm?",
-    "¿Cuántos grados tiene un ángulo recto?",
-    "¿Cuánto es 15 - 7?",
-    "Si un círculo tiene un radio de 5 cm, ¿cuál es su diámetro?",
-    "¿Qué es un número primo?",
-    "¿Cuántos lados tiene un hexágono?",
-    "¿Cuál es el resultado de 3 * 6?",
-    "Si un rectángulo tiene una base de 10 cm y una altura de 5 cm, ¿cuál es su área?",
-    "¿Qué es un número impar?",
-    "¿Cuánto es 25 dividido entre 5?",
-    "¿Cuál es la raíz cuadrada de 49?",
-    "¿Qué es el perímetro de un círculo?",
-    "¿Cuántos grados tiene un ángulo obtuso?",
-    "¿Cómo se llama la forma con cuatro lados de igual longitud?",
-    "¿Cuál es el valor de 4²?",
-    "¿Qué es una fracción equivalente?",
-    "¿Cuál es el valor de 3³?",
-    "¿Cuántos milímetros hay en un centímetro?",
-    "¿Cuántos segundos hay en una hora?",
-    "¿Cuántos minutos hay en 3 horas?",
-    "Si el radio de un círculo es 7 cm, ¿cuál es su área?",
-    "¿Qué es una ecuación?",
-    "¿Qué es un número compuesto?",
-    "¿Cuál es el resultado de 16 ÷ 2?",
-    "¿Qué significa el término 'media' en estadística?",
-    "Si un número es divisible entre 2, ¿cómo se le llama?",
-    "¿Qué es un ángulo agudo?",
-    "¿Cómo se llama un ángulo de 180°?",
-    "¿Qué significa 'sumar' en matemáticas?",
-    "¿Qué es un número racional?",
-    "¿Cuánto es 8 * 7?",
-    "¿Qué es un triángulo equilátero?",
-    "¿Cuál es el resultado de 9 + 6?",
-    "Si un número es divisible entre 3, ¿qué propiedad tiene?",
-    "¿Qué es un número irracional?",
-    "¿Cómo se calcula el perímetro de un triángulo equilátero?",
-    "¿Qué significa 'restar' en matemáticas?",
-    "¿Qué es la propiedad distributiva de la multiplicación?",
-    "¿Cuál es la suma de los ángulos internos de un triángulo?",
-    "¿Cuántos decimales tiene el número 1/3?",
-    "¿Cómo se llama el valor de un número en una ecuación?",
-    "¿Qué es el mínimo común múltiplo (MCM)?",
-    "¿Qué es el máximo común divisor (MCD)?",
-    "¿Cuánto es 100 ÷ 4?",
-    "¿Cómo se llama la línea que divide a un triángulo por su mitad?",
-    "¿Qué es el área de un círculo?",
-    "¿Qué es una progresión aritmética?",
-    "¿Cómo se calcula el volumen de un cubo?",
-    "¿Qué es la mediana en un conjunto de datos?",
-    "¿Cuántos vértices tiene un cubo?",
-    "¿Qué es una ecuación de segundo grado?",
-    "¿Qué significa 'multiplicar' en matemáticas?",
-    "¿Cuál es el resultado de 4 * 9?",
-    "¿Cómo se llama el ángulo mayor de 90°?",
-    "¿Cuántos ángulos rectos tiene un rectángulo?",
-    "¿Qué significa 'dividir' en matemáticas?",
-    "¿Qué es la fracción 1/2 en decimal?",
-    "¿Cuál es la distancia entre dos puntos en el plano cartesiano?",
-    "¿Qué es un número decimal?",
-    "¿Cómo se representa un número negativo?",
-    "¿Qué es un ángulo llano?",
-    "¿Qué es una matriz en matemáticas?",
-    "¿Cuántos lados tiene un pentágono?",
-    "¿Qué es una raíz cuadrada?",
-    "¿Cómo se llama el resultado de multiplicar un número por sí mismo?",
-    "¿Qué es el cociente de una división?",
-    "¿Qué es la regla de tres simple?",
-    "¿Cuál es la función principal de un sistema de coordenadas cartesianas?",
-    "¿Qué es una fracción impropia?",
-    "¿Cuántos lados tiene un dodecágono?",
-    "¿Qué es la simplificación de fracciones?"
+    private string[] preguntes = {
+    "Quin és el resultat de 5 + 3?",
+    "Quin nombre és el doble de 6?",
+    "Quant és 12 dividit entre 4?",
+    "Si un triangle té un angle de 90°, com s'anomena?",
+    "Quin és el valor de π (pi) amb dos decimals?",
+    "Si x + 3 = 8, quin és el valor de x?",
+    "Quina és l'àrea d'un quadrat amb costats de 4 cm?",
+    "Quants graus té un angle recte?",
+    "Quant és 15 - 7?",
+    "Si un cercle té un radi de 5 cm, quin és el seu diàmetre?",
+    "Què és un nombre primer?",
+    "Quants costats té un hexàgon?",
+    "Quin és el resultat de 3 * 6?",
+    "Si un rectangle té una base de 10 cm i una alçada de 5 cm, quina és la seva àrea?",
+    "Què és un nombre senar?",
+    "Quant és 25 dividit entre 5?",
+    "Quina és l'arrel quadrada de 49?",
+    "Què és el perímetre d'un cercle?",
+    "Quants graus té un angle obtús?",
+    "Com s'anomena la forma amb quatre costats de la mateixa longitud?",
+    "Quin és el valor de 4²?",
+    "Què és una fracció equivalent?",
+    "Quin és el valor de 3³?",
+    "Quants mil·límetres hi ha en un centímetre?",
+    "Quants segons hi ha en una hora?",
+    "Quants minuts hi ha en 3 hores?",
+    "Si el radi d'un cercle és de 7 cm, quina és la seva àrea?",
+    "Què és una equació?",
+    "Què és un nombre compost?",
+    "Quin és el resultat de 16 ÷ 2?",
+    "Què significa el terme 'mitjana' en estadística?",
+    "Si un nombre és divisible entre 2, com se'n diu?",
+    "Què és un angle agut?",
+    "Com s'anomena un angle de 180°?",
+    "Què significa 'sumar' en matemàtiques?",
+    "Què és un nombre racional?",
+    "Quant és 8 * 7?",
+    "Què és un triangle equilàter?",
+    "Quin és el resultat de 9 + 6?",
+    "Si un nombre és divisible entre 3, quina propietat té?",
+    "Què és un nombre irracional?",
+    "Com es calcula el perímetre d'un triangle equilàter?",
+    "Què significa 'restar' en matemàtiques?",
+    "Què és la propietat distributiva de la multiplicació?",
+    "Quina és la suma dels angles interns d'un triangle?",
+    "Quants decimals té el nombre 1/3?",
+    "Com s'anomena el valor d'un nombre en una equació?",
+    "Què és el mínim comú múltiple (MCM)?",
+    "Què és el màxim comú divisor (MCD)?",
+    "Quant és 100 ÷ 4?",
+    "Com s'anomena la línia que divideix un triangle per la meitat?",
+    "Què és l'àrea d'un cercle?",
+    "Què és una progressió aritmètica?",
+    "Com es calcula el volum d'un cub?",
+    "Què és la mediana en un conjunt de dades?",
+    "Quants vèrtexs té un cub?",
+    "Què és una equació de segon grau?",
+    "Què significa 'multiplicar' en matemàtiques?",
+    "Quin és el resultat de 4 * 9?",
+    "Com s'anomena l'angle major de 90°?",
+    "Quants angles rectes té un rectangle?",
+    "Què significa 'dividir' en matemàtiques?",
+    "Què és la fracció 1/2 en decimal?",
+    "Quina és la distància entre dos punts en el pla cartesià?",
+    "Què és un nombre decimal?",
+    "Com es representa un nombre negatiu?",
+    "Què és un angle pla?",
+    "Què és una matriu en matemàtiques?",
+    "Quants costats té un pentàgon?",
+    "Què és una arrel quadrada?",
+    "Com s'anomena el resultat de multiplicar un nombre per ell mateix?",
+    "Què és el quocient d'una divisió?",
+    "Què és la regla de tres simple?",
+    "Quina és la funció principal d'un sistema de coordenades cartesianes?",
+    "Què és una fracció impròpia?",
+    "Quants costats té un dodecàgon?",
+    "Què és la simplificació de fraccions?"
 };
 
-private string[][] opciones = new string[][] {
-    new string[] { "6", "7", "8" },  // Pregunta 1: ¿Cuál es el resultado de 5 + 3?
-    new string[] { "10", "12", "14" },  // Pregunta 2: ¿Qué número es el doble de 6?
-    new string[] { "2", "3", "4" },  // Pregunta 3: ¿Cuánto es 12 dividido entre 4?
-    new string[] { "Círculo", "Triángulo", "Cuadrado" },  // Pregunta 4: Si un triángulo tiene un ángulo de 90°, ¿cómo se llama?
-    new string[] { "3.14", "3.15", "3.13" },  // Pregunta 5: ¿Cuál es el valor de π (pi) con dos decimales?
-    new string[] { "5", "4", "3" },  // Pregunta 6: Si x + 3 = 8, ¿cuál es el valor de x?
-    new string[] { "16 cm²", "12 cm²", "8 cm²" },  // Pregunta 7: ¿Cuál es el área de un cuadrado con lados de 4 cm?
-    new string[] { "60°", "90°", "120°" },  // Pregunta 8: ¿Cuántos grados tiene un ángulo recto?
-    new string[] { "6", "7", "8" },  // Pregunta 9: ¿Cuánto es 15 - 7?
-    new string[] { "10 cm", "5 cm", "15 cm" },  // Pregunta 10: Si un círculo tiene un radio de 5 cm, ¿cuál es su diámetro?
-    new string[] { "Un número que solo tiene dos divisores", "Un número divisible entre 2", "Un número que no tiene factores" },  // Pregunta 11: ¿Qué es un número primo?
-    new string[] { "4", "6", "8" },  // Pregunta 12: ¿Cuántos lados tiene un hexágono?
-    new string[] { "18", "20", "16" },  // Pregunta 13: ¿Cuál es el resultado de 3 * 6?
-    new string[] { "50 cm²", "30 cm²", "10 cm²" },  // Pregunta 14: Si un rectángulo tiene una base de 10 cm y una altura de 5 cm, ¿cuál es su área?
-    new string[] { "Un número que no se puede dividir entre 2", "Un número que siempre es par", "Un número que termina en 0 o 5" },  // Pregunta 15: ¿Qué es un número impar?
-    new string[] { "3", "4", "5" },  // Pregunta 16: ¿Cuánto es 25 dividido entre 5?
-    new string[] { "7", "6", "9" },  // Pregunta 17: ¿Cuál es la raíz cuadrada de 49?
-    new string[] { "Circunferencia", "Área", "Perímetro" },  // Pregunta 18: ¿Qué es el perímetro de un círculo?
-    new string[] { "120°", "135°", "100°" },  // Pregunta 19: ¿Cuántos grados tiene un ángulo obtuso?
-    new string[] { "Cuadrado", "Rectángulo", "Rombo" },  // Pregunta 20: ¿Cómo se llama la forma con cuatro lados de igual longitud?
-    new string[] { "16", "8", "4" },  // Pregunta 21: ¿Cuál es el valor de 4²?
-    new string[] { "Fracción que representa el mismo valor", "Fracción con el mismo denominador", "Fracción que se puede simplificar" },  // Pregunta 22: ¿Qué es una fracción equivalente?
-    new string[] { "9", "27", "81" },  // Pregunta 23: ¿Cuál es el valor de 3³?
-    new string[] { "100", "10", "1" },  // Pregunta 24: ¿Cuántos milímetros hay en un centímetro?
-    new string[] { "60", "3600", "600" },  // Pregunta 25: ¿Cuántos segundos hay en una hora?
-    new string[] { "180", "300", "60" },  // Pregunta 26: ¿Cuántos minutos hay en 3 horas?
-    new string[] { "154 cm²", "153 cm²", "150 cm²" },  // Pregunta 27: Si el radio de un círculo es 7 cm, ¿cuál es su área?
-    new string[] { "Una igualdad matemática", "Una operación", "Una secuencia de números" },  // Pregunta 28: ¿Qué es una ecuación?
-    new string[] { "Un número divisible por 3 y 5", "Un número divisible entre 1 y sí mismo", "Un número divisible entre varios divisores" },  // Pregunta 29: ¿Qué es un número compuesto?
-    new string[] { "8", "6", "7" },  // Pregunta 30: ¿Cuál es el resultado de 16 ÷ 2?
-    new string[] { "Promedio", "Moda", "Mediana" },  // Pregunta 31: ¿Qué significa el término 'media' en estadística?
-    new string[] { "Par", "Impar", "Divisible por 3" },  // Pregunta 32: Si un número es divisible entre 2, ¿cómo se le llama?
-    new string[] { "Menor de 90°", "Mayor de 90°", "Igual a 90°" },  // Pregunta 33: ¿Qué es un ángulo agudo?
-    new string[] { "Recto", "Agudo", "Llano" },  // Pregunta 34: ¿Cómo se llama un ángulo de 180°?
-    new string[] { "Sumar", "Restar", "Multiplicar" },  // Pregunta 35: ¿Qué significa 'sumar' en matemáticas?
-    new string[] { "Un número entero", "Un número que puede ser expresado como una fracción", "Un número que tiene decimales" },  // Pregunta 36: ¿Qué es un número racional?
-    new string[] { "56", "54", "64" },  // Pregunta 37: ¿Cuánto es 8 * 7?
-    new string[] { "Un triángulo con lados iguales", "Un triángulo con ángulos rectos", "Un triángulo con ángulos obtusos" },  // Pregunta 38: ¿Qué es un triángulo equilátero?
-    new string[] { "15", "14", "16" },  // Pregunta 39: ¿Cuál es el resultado de 9 + 6?
-    new string[] { "Divisible entre 2", "Divisible entre 3", "Divisible entre 5" },  // Pregunta 40: Si un número es divisible entre 3, ¿qué propiedad tiene?
-    new string[] { "Un número que tiene decimales infinitos no repetidos", "Un número que tiene decimales periódicos", "Un número entero" },  // Pregunta 41: ¿Qué es un número irracional?
-    new string[] { "Multiplicando los tres lados", "Sumando los tres lados", "Multiplicando el perímetro por 3" },  // Pregunta 42: ¿Cómo se calcula el perímetro de un triángulo equilátero?
-    new string[] { "Sumar", "Multiplicar", "Restar" },  // Pregunta 43: ¿Qué significa 'restar' en matemáticas?
-    new string[] { "Distributiva", "Asociativa", "Conmutativa" },  // Pregunta 44: ¿Qué es la propiedad distributiva de la multiplicación?
-    new string[] { "180°", "360°", "90°" },  // Pregunta 45: ¿Cuál es la suma de los ángulos internos de un triángulo?
-    new string[] { "2", "1", "0" },  // Pregunta 46: ¿Cuántos decimales tiene el número 1/3?
-    new string[] { "Despeje", "Valor", "Resultado" },  // Pregunta 47: ¿Cómo se llama el valor de un número en una ecuación?
-    new string[] { "El menor múltiplo común", "El mayor múltiplo común", "El mayor divisor común" },  // Pregunta 48: ¿Qué es el mínimo común múltiplo (MCM)?
-    new string[] { "El mayor múltiplo común", "El mayor divisor común", "El menor múltiplo común" },  // Pregunta 49: ¿Qué es el máximo común divisor (MCD)?
-    new string[] { "25", "24", "30" },  // Pregunta 50: ¿Cuánto es 100 ÷ 4?
-    new string[] { "Mediana", "Bisectriz", "Altura" },  // Pregunta 51: ¿Cómo se llama la línea que divide a un triángulo por su mitad?
-    new string[] { "Área = πr²", "Área = 2πr", "Área = 4r" },  // Pregunta 52: ¿Qué es el área de un círculo?
-    new string[] { "Una secuencia de números", "Una suma de números", "Una resta de números" },  // Pregunta 53: ¿Qué es una progresión aritmética?
-    new string[] { "Lado³", "Lado²", "Lado*Lado*Lado" },  // Pregunta 54: ¿Cómo se calcula el volumen de un cubo?
-    new string[] { "El promedio", "El valor medio", "El valor central" },  // Pregunta 55: ¿Qué es la mediana en un conjunto de datos?
-    new string[] { "6", "8", "4" },  // Pregunta 56: ¿Cuántos vértices tiene un cubo?
-    new string[] { "Una ecuación cuadrática", "Una ecuación con dos incógnitas", "Una ecuación de tercer grado" },  // Pregunta 57: ¿Qué es una ecuación de segundo grado?
-    new string[] { "Sumar", "Multiplicar", "Restar" },  // Pregunta 58: ¿Qué significa 'multiplicar' en matemáticas?
-    new string[] { "24", "36", "48" },  // Pregunta 59: ¿Cuál es el resultado de 4 * 9?
-    new string[] { "Obtuso", "Recto", "Agudo" },  // Pregunta 60: ¿Cómo se llama el ángulo mayor de 90°?
-    new string[] { "2", "4", "3" },  // Pregunta 61: ¿Cuántos ángulos rectos tiene un rectángulo?
-    new string[] { "Sustraer", "Dividir", "Sumar" },  // Pregunta 62: ¿Qué significa 'dividir' en matemáticas?
-    new string[] { "0.5", "1", "2" },  // Pregunta 63: ¿Qué es la fracción 1/2 en decimal?
-    new string[] { "Por la distancia entre los puntos", "Usando las coordenadas", "Por la distancia de los ejes" },  // Pregunta 64: ¿Cuál es la distancia entre dos puntos en el plano cartesiano?
-    new string[] { "Un número con punto decimal", "Un número con coma decimal", "Un número sin punto decimal" },  // Pregunta 65: ¿Qué es un número decimal?
-    new string[] { "Con el signo negativo", "Con el signo positivo", "Con punto decimal" },  // Pregunta 66: ¿Cómo se representa un número negativo?
-    new string[] { "180°", "90°", "360°" },  // Pregunta 67: ¿Qué es un ángulo llano?
-    new string[] { "Una matriz es una tabla", "Un conjunto de números organizados", "Una secuencia matemática" },  // Pregunta 68: ¿Qué es una matriz en matemáticas?
-    new string[] { "5", "6", "4" },  // Pregunta 69: ¿Cuántos lados tiene un pentágono?
-    new string[] { "El número que se multiplica por sí mismo", "El número que tiene raíz cuadrada", "El número que es elevado a 2" },  // Pregunta 70: ¿Qué es una raíz cuadrada?
-    new string[] { "Cuadrado", "Exponencial", "Producto" },  // Pregunta 71: ¿Cómo se llama el resultado de multiplicar un número por sí mismo?
-    new string[] { "El cociente", "El divisor", "El numerador" },  // Pregunta 72: ¿Qué es el cociente de una división?
-    new string[] { "Una regla de proporciones", "Una regla de cálculo", "Una regla de tres" },  // Pregunta 73: ¿Qué es la regla de tres simple?
-    new string[] { "Ubicar puntos", "Establecer relaciones", "Dividir ejes" },  // Pregunta 74: ¿Cuál es la función principal de un sistema de coordenadas cartesianas?
-    new string[] { "Fracción mayor que 1", "Fracción menor que 1", "Fracción que no se puede simplificar" },  // Pregunta 75: ¿Qué es una fracción impropia?
-    new string[] { "10", "12", "14" },  // Pregunta 76: ¿Cuántos lados tiene un dodecágono?
-    new string[] { "Hacer más pequeña una fracción", "Dividir una fracción", "Sustituir un denominador" }  // Pregunta 77: ¿Qué es la simplificación de fracciones?
+    private string[][] opcions = new string[][] {
+    new string[] { "6", "7", "8" },
+    new string[] { "10", "12", "14" },
+    new string[] { "2", "3", "4" },
+    new string[] { "Cercle", "Triangle", "Quadrat" },
+    new string[] { "3.14", "3.15", "3.13" },
+    new string[] { "5", "4", "3" },
+    new string[] { "16 cm²", "12 cm²", "8 cm²" },
+    new string[] { "60°", "90°", "120°" },
+    new string[] { "6", "7", "8" },
+    new string[] { "10 cm", "5 cm", "15 cm" },
+    new string[] { "Un nombre que només té dos divisors", "Un nombre divisible entre 2", "Un nombre que no té factors" },
+    new string[] { "4", "6", "8" },
+    new string[] { "18", "20", "16" },
+    new string[] { "50 cm²", "30 cm²", "10 cm²" },
+    new string[] { "Un nombre que no es pot dividir entre 2", "Un nombre que sempre és parell", "Un nombre que acaba en 0 o 5" },
+    new string[] { "3", "4", "5" },
+    new string[] { "7", "6", "9" },
+    new string[] { "Circumferència", "Àrea", "Perímetre" },
+    new string[] { "120°", "135°", "100°" },
+    new string[] { "Quadrat", "Rectangle", "Rombe" },
+    new string[] { "16", "8", "4" },
+    new string[] { "Fracció que representa el mateix valor", "Fracció amb el mateix denominador", "Fracció que es pot simplificar" },
+    new string[] { "9", "27", "81" },
+    new string[] { "100", "10", "1" },
+    new string[] { "60", "3600", "600" },
+    new string[] { "180", "300", "60" },
+    new string[] { "154 cm²", "153 cm²", "150 cm²" },
+    new string[] { "Una igualtat matemàtica", "Una operació", "Una seqüència de nombres" },
+    new string[] { "Un nombre divisible per 3 i 5", "Un nombre divisible entre 1 i ell mateix", "Un nombre divisible entre diversos divisors" },
+    new string[] { "8", "6", "7" },
+    new string[] { "Mitjana", "Moda", "Mediana" },
+    new string[] { "Parell", "Senar", "Divisible per 3" },
+    new string[] { "Menor de 90°", "Major de 90°", "Igual a 90°" },
+    new string[] { "Recte", "Agut", "Pla" },
+    new string[] { "Sumar", "Restar", "Multiplicar" },
+    new string[] { "Un nombre enter", "Un nombre que pot ser expressat com una fracció", "Un nombre que té decimals" },
+    new string[] { "56", "54", "64" },
+    new string[] { "Un triangle amb costats iguals", "Un triangle amb angles rectes", "Un triangle amb angles obtusos" },
+    new string[] { "15", "14", "16" },
+    new string[] { "Divisible entre 2", "Divisible entre 3", "Divisible entre 5" },
+    new string[] { "Un nombre que té decimals infinits no repetits", "Un nombre que té decimals periòdics", "Un nombre enter" },
+    new string[] { "Sumant els tres costats", "Multiplicant els tres costats", "Multiplicant el perímetre per 3" },
+    new string[] { "Sumar", "Multiplicar", "Restar" },
+    new string[] { "Distributiva", "Associativa", "Commutativa" },
+    new string[] { "180°", "360°", "90°" },
+    new string[] { "2", "1", "0" },
+    new string[] { "Despeje", "Valor", "Resultat" },
+    new string[] { "El menor múltiple comú", "El major múltiple comú", "El major divisor comú" },
+    new string[] { "El major múltiple comú", "El major divisor comú", "El menor múltiple comú" },
+    new string[] { "25", "24", "30" },
+    new string[] { "Mediana", "Bisectriu", "Alçada" },
+    new string[] { "Àrea = πr²", "Àrea = 2πr", "Àrea = 4r" },
+    new string[] { "Una seqüència de nombres", "Una suma de nombres", "Una resta de nombres" },
+    new string[] { "Costat³", "Costat²", "Costat*Costat*Costat" },
+    new string[] { "La mitjana", "El valor central", "El valor mitjà" },
+    new string[] { "6", "8", "4" },
+    new string[] { "Una equació quadràtica", "Una equació amb dues incògnites", "Una equació de tercer grau" },
+    new string[] { "Sumar", "Multiplicar", "Restar" },
+    new string[] { "24", "36", "48" },
+    new string[] { "Obtús", "Recte", "Agut" },
+    new string[] { "2", "4", "3" },
+    new string[] { "Restar", "Dividir", "Sumar" },
+    new string[] { "0.5", "1", "2" },
+    new string[] { "Per la distància entre els punts", "Usant les coordenades", "Per la distància dels eixos" },
+    new string[] { "Un nombre amb coma decimal", "Un nombre amb punt decimal", "Un nombre sense coma decimal" },
+    new string[] { "Amb el signe negatiu", "Amb el signe positiu", "Amb punt decimal" },
+    new string[] { "180°", "90°", "360°" },
+    new string[] { "Una matriu és una taula", "Un conjunt de nombres organitzats", "Una seqüència matemàtica" },
+    new string[] { "5", "6", "4" },
+    new string[] { "El nombre que es multiplica per ell mateix", "El nombre que té arrel quadrada", "El nombre que s'eleva a 2" },
+    new string[] { "Quadrat", "Exponencial", "Producte" },
+    new string[] { "El quocient", "El divisor", "El numerador" },
+    new string[] { "Una regla de proporcions", "Una regla de càlcul", "Una regla de tres" },
+    new string[] { "Ubicar punts", "Establir relacions", "Dividir eixos" },
+    new string[] { "Fracció major que 1", "Fracció menor que 1", "Fracció que no es pot simplificar" },
+    new string[] { "10", "12", "14" },
+    new string[] { "Fer més petita una fracció", "Dividir una fracció", "Substituir un denominador" }
 };
-private int[] respuestasCorrectas = {
+
+    private int[] respostesCorrectes = {
     2,  // Pregunta 1: ¿Cuál es el resultado de 5 + 3? (Respuesta correcta: 8)
     1,  // Pregunta 2: ¿Qué número es el doble de 6? (Respuesta correcta: 12)
     0,  // Pregunta 3: ¿Cuánto es 12 dividido entre 4? (Respuesta correcta: 3)
@@ -252,6 +254,7 @@ private int[] respuestasCorrectas = {
     0   // Pregunta 77: ¿Qué es la simplificación de fracciones? (Respuesta correcta: Reducir a su mínima expresión)
 };
 
+
     private string preguntaActual;
     private string[] opcionesPreguntaActual;
     private int indiceRespuestaCorrecta;
@@ -270,27 +273,28 @@ private int[] respuestasCorrectas = {
         }
 
         // Verificar que el número de preguntas y opciones coincida
-        if (preguntas.Length != opciones.Length)
+        if (preguntes.Length != opcions.Length)
         {
-            Debug.LogError(preguntas.Length);
-            Debug.LogError(opciones.Length);  // Salir si no coinciden
+            Debug.LogError(preguntes.Length);
+            Debug.LogError(opcions.Length);  // Salir si no coinciden
             Debug.LogError("El número de preguntas no coincide con el número de opciones.");
             return; // Salir si no coinciden
         }
 
         // Verificar que el número de respuestas correctas coincida con el número de preguntas
-        if (preguntas.Length != respuestasCorrectas.Length)
+        if (preguntes.Length != respostesCorrectes.Length)
         {
-            Debug.LogError(preguntas.Length);
-            Debug.LogError(respuestasCorrectas.Length);
+            Debug.LogError(preguntes.Length);
+            Debug.LogError(respostesCorrectes.Length);
             Debug.LogError("El número de respuestas correctas no coincide con el número de preguntas.");
             return; // Salir si no coinciden
         }
     }
-    public void MostrarPregunta()
+    public void MostrarPregunta(Enemigo_Controller enemigo)
     {
+        enemigoActual = enemigo;
         // Verificar que el array de preguntas no esté vacío
-        if (preguntas.Length == 0)
+        if (preguntes.Length == 0)
         {
             Debug.LogError("El array de preguntas está vacío.");
             return;  // Salir si no hay preguntas
@@ -311,10 +315,10 @@ private int[] respuestasCorrectas = {
         }
 
         // Seleccionar una pregunta aleatoria
-        int indicePregunta = Random.Range(0, preguntas.Length);
-        preguntaActual = preguntas[indicePregunta];
-        opcionesPreguntaActual = opciones[indicePregunta];
-        indiceRespuestaCorrecta = respuestasCorrectas[indicePregunta];
+        int indicePregunta = Random.Range(0, preguntes.Length);
+        preguntaActual = preguntes[indicePregunta];
+        opcionesPreguntaActual = opcions[indicePregunta];
+        indiceRespuestaCorrecta = respostesCorrectes[indicePregunta];
 
         // Verificar que las opciones de la pregunta no estén vacías
         if (opcionesPreguntaActual == null || opcionesPreguntaActual.Length == 0)
@@ -351,26 +355,42 @@ private int[] respuestasCorrectas = {
             botonesOpciones[i].onClick.RemoveAllListeners();  // Eliminar cualquier listener previo
             botonesOpciones[i].onClick.AddListener(() => ValidarRespuesta(indice));  // Asignar la función para validar la respuesta
         }
-
+        
         fondoBlanco.SetActive(true);  // Mostrar el fondo blanco
         panelPregunta.SetActive(true);  // Mostrar el panel de la pregunta
     }
 
     // Valida si la respuesta seleccionada es correcta
-    private void ValidarRespuesta(int indiceSeleccionado)
+
+private void ValidarRespuesta(int indiceSeleccionado)
+{
+    if (indiceSeleccionado == indiceRespuestaCorrecta)
     {
-        if (indiceSeleccionado == indiceRespuestaCorrecta)
+        Debug.Log("¡Respuesta correcta!");
+
+        // Eliminar solo al enemigo actual
+        if (enemigoActual != null)
         {
-            Debug.Log("¡Respuesta correcta!");
+            Destroy(enemigoActual.gameObject); // Destruir al enemigo actual
+            Debug.Log("Enemigo eliminado correctamente.");
+            enemigoActual = null; // Limpiar la referencia
         }
         else
         {
-            Debug.Log("Respuesta incorrecta.");
-            playerController.vida = playerController.vida - 1;
+            Debug.LogError("No hay un enemigo actual asignado para eliminar.");
         }
-
-        // Ocultar el fondo y el panel después de responder
-        fondoBlanco.SetActive(false);
-        panelPregunta.SetActive(false);
     }
+    else
+    {
+        Debug.Log("Respuesta incorrecta.");
+        playerController.vida -= 1; // Restar una vida si la respuesta es incorrecta
+    }
+
+    // Ocultar el fondo y el panel después de responder
+    fondoBlanco.SetActive(false);
+    panelPregunta.SetActive(false);
+}
+
+
+
 }
