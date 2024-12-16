@@ -167,6 +167,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("El personaje ha caído fuera del área y ha vuelto a la posición inicial.");
     }
 
+
+    
+
     // Activar el enemigo cuando se alcanza la posición deseada
     void ActivarEnemigo()
     {
