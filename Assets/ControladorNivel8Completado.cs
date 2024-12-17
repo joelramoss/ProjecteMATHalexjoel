@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ContenedorNivel8Controller : MonoBehaviour
+public class ControladorNivel8Completado : MonoBehaviour
 {
     // Referencia a los enemigos del nivel 8
     public GameObject[] enemigosNivel8;
@@ -10,9 +10,10 @@ public class ContenedorNivel8Controller : MonoBehaviour
     {
         bool todosEliminados = true;
 
+        // Verificar si todos los enemigos han sido eliminados
         foreach (GameObject enemigo in enemigosNivel8)
         {
-            if (enemigo != null)
+            if (enemigo != null) // Si algún enemigo sigue existiendo
             {
                 todosEliminados = false;
                 break;
@@ -27,8 +28,11 @@ public class ContenedorNivel8Controller : MonoBehaviour
 
     void CompletarNivel8()
     {
+        // Marca el nivel 8 como completado
         GestorDeNivelesGlobal.MarcarNivelComoCompletado(8);
-        
+        Debug.Log("Nivel 8 completado.");
+
+        // Desactivar enemigos restantes (si es necesario)
         foreach (GameObject enemigo in enemigosNivel8)
         {
             if (enemigo != null)
@@ -36,7 +40,5 @@ public class ContenedorNivel8Controller : MonoBehaviour
                 enemigo.SetActive(false);
             }
         }
-
-        Debug.Log("Nivel 8 completado.");
     }
 }

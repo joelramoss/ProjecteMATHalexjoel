@@ -7,6 +7,9 @@ TagManager:
   - TriggerIzquierda
   - TriggerDerecha
   - TriggerSuelo
+  - TriggerArriba
+  - TriggerAbajo
+  - dragon
   layers:
   - Default
   - TransparentFX

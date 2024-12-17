@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ContenedorNivel3Controller : MonoBehaviour
+public class ControladorNivel3Completado : MonoBehaviour
 {
     // Referencia a los enemigos del nivel 3
     public GameObject[] enemigosNivel3;
@@ -10,9 +10,10 @@ public class ContenedorNivel3Controller : MonoBehaviour
     {
         bool todosEliminados = true;
 
+        // Verificar si todos los enemigos han sido eliminados
         foreach (GameObject enemigo in enemigosNivel3)
         {
-            if (enemigo != null)
+            if (enemigo != null) // Si algún enemigo sigue existiendo
             {
                 todosEliminados = false;
                 break;
@@ -27,8 +28,11 @@ public class ContenedorNivel3Controller : MonoBehaviour
 
     void CompletarNivel3()
     {
+        // Marca el nivel 3 como completado
         GestorDeNivelesGlobal.MarcarNivelComoCompletado(3);
-        
+        Debug.Log("Nivel 3 completado.");
+
+        // Desactivar enemigos restantes (si es necesario)
         foreach (GameObject enemigo in enemigosNivel3)
         {
             if (enemigo != null)
@@ -36,7 +40,5 @@ public class ContenedorNivel3Controller : MonoBehaviour
                 enemigo.SetActive(false);
             }
         }
-
-        Debug.Log("Nivel 3 completado.");
     }
 }

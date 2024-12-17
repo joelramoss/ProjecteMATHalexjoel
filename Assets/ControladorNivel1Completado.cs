@@ -1,49 +1,45 @@
 using System.Collections;
 using UnityEngine;
 
-public class ContenedorNivel1Controller : MonoBehaviour
+public class ControladorNivel1Completado : MonoBehaviour
 {
     // Referencia a los enemigos del nivel 1
     public GameObject[] enemigosNivel1;  // Array para almacenar los enemigos
-    
 
-    // Método para comprobar si todos los enemigos han sido eliminados
     void Update()
     {
-        // Verificar si todos los enemigos han sido eliminados
         bool todosEliminados = true;
 
+        // Verificar si todos los enemigos han sido eliminados
         foreach (GameObject enemigo in enemigosNivel1)
         {
-            if (enemigo != null)  // Si el enemigo aún existe, el nivel no está completado
+            if (enemigo != null)  // Si el enemigo aún existe
             {
                 todosEliminados = false;
                 break;
             }
         }
 
-        // Si todos los enemigos han sido eliminados, marcar el nivel como completado
+        // Si todos los enemigos han sido eliminados, completar el nivel
         if (todosEliminados)
         {
             CompletarNivel1();
         }
     }
 
-    // Método que marca el nivel como completado
     void CompletarNivel1()
     {
-        // Marcar el nivel como completado en el Gestor de Niveles Global
+        // Marcar el nivel como completado
         GestorDeNivelesGlobal.MarcarNivelComoCompletado(1);
-        
-        // Opcionalmente, desactivar enemigos y otros elementos
+        Debug.Log("Nivel 1 completado.");
+
+        // Desactivar los enemigos
         foreach (GameObject enemigo in enemigosNivel1)
         {
             if (enemigo != null)
             {
-                enemigo.SetActive(false);  // Desactivar enemigos
+                enemigo.SetActive(false);
             }
         }
-
-        Debug.Log("Nivel 1 completado.");
     }
 }

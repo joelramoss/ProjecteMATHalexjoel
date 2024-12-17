@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ContenedorNivel5Controller : MonoBehaviour
+public class ControladorNivel5Completado : MonoBehaviour
 {
     // Referencia a los enemigos del nivel 5
     public GameObject[] enemigosNivel5;
@@ -10,9 +10,10 @@ public class ContenedorNivel5Controller : MonoBehaviour
     {
         bool todosEliminados = true;
 
+        // Verificar si todos los enemigos han sido eliminados
         foreach (GameObject enemigo in enemigosNivel5)
         {
-            if (enemigo != null)
+            if (enemigo != null) // Si algún enemigo sigue existiendo
             {
                 todosEliminados = false;
                 break;
@@ -27,8 +28,11 @@ public class ContenedorNivel5Controller : MonoBehaviour
 
     void CompletarNivel5()
     {
+        // Marca el nivel 5 como completado
         GestorDeNivelesGlobal.MarcarNivelComoCompletado(5);
-        
+        Debug.Log("Nivel 5 completado.");
+
+        // Desactivar enemigos restantes (si es necesario)
         foreach (GameObject enemigo in enemigosNivel5)
         {
             if (enemigo != null)
@@ -36,7 +40,5 @@ public class ContenedorNivel5Controller : MonoBehaviour
                 enemigo.SetActive(false);
             }
         }
-
-        Debug.Log("Nivel 5 completado.");
     }
 }

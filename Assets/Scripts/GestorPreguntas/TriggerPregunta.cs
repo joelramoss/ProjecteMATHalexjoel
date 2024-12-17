@@ -3,7 +3,6 @@ using UnityEngine;
 public class TriggerPregunta : MonoBehaviour
 {
     private GestorPreguntas gestorPreguntas;  // Referencia al script GestorPreguntas
-    public Enemigo_Controller enemigo;       // Referencia al enemigo asignada en el Inspector
 
     void Start()
     {
@@ -16,20 +15,31 @@ public class TriggerPregunta : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+void OnTriggerEnter2D(Collider2D other)
+{
+    Debug.Log("OnTriggerEnter2D llamado. Tag del objeto que entró: " + other.tag);
+
+    // Verificar si el objeto que entró en el trigger es el jugador
+    if (other.CompareTag("Player"))
     {
-        Debug.Log("OnTriggerEnter2D llamado. Tag del objeto que entró: " + other.tag);
+        Debug.Log("Player entró en el trigger. Mostrando pregunta.");
 
-        // Verificar si el objeto que entró en el trigger es el jugador
-        if (other.CompareTag("Player"))
+        // Obtener el Enemigo_Controller del GameObject actual
+        Enemigo_Controller enemigo = GetComponentInParent<Enemigo_Controller>();
+
+        if (enemigo != null)
         {
-            Debug.Log("Player entró en el trigger. Mostrando pregunta.");
-
-            // Mostrar la pregunta y pasar el enemigo asignado
-            gestorPreguntas.MostrarPregunta(enemigo);
-
-            // Desactivar el trigger para que no se active nuevamente
-            GetComponent<Collider2D>().enabled = false;  // Desactiva el collider 2D
+            // Llamar a MostrarPregunta y pasar el enemigo
+            gestorPreguntas.MostrarPregunta(enemigo.gameObject);
         }
+        else
+        {
+            Debug.LogError("Enemigo_Controller no encontrado en el padre del Trigger.");
+        }
+
+        // Desactivar el trigger para que no se active nuevamente
+        GetComponent<Collider2D>().enabled = false;
     }
+}
+
 }

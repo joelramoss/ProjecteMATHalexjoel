@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ContenedorNivel9Controller : MonoBehaviour
+public class ControladorNivel9Completado : MonoBehaviour
 {
     // Referencia a los enemigos del nivel 9
     public GameObject[] enemigosNivel9;
@@ -10,9 +10,10 @@ public class ContenedorNivel9Controller : MonoBehaviour
     {
         bool todosEliminados = true;
 
+        // Verificar si todos los enemigos han sido eliminados
         foreach (GameObject enemigo in enemigosNivel9)
         {
-            if (enemigo != null)
+            if (enemigo != null) // Si algún enemigo sigue existiendo
             {
                 todosEliminados = false;
                 break;
@@ -27,8 +28,11 @@ public class ContenedorNivel9Controller : MonoBehaviour
 
     void CompletarNivel9()
     {
+        // Marca el nivel 9 como completado
         GestorDeNivelesGlobal.MarcarNivelComoCompletado(9);
-        
+        Debug.Log("Nivel 9 completado.");
+
+        // Desactivar enemigos restantes (si es necesario)
         foreach (GameObject enemigo in enemigosNivel9)
         {
             if (enemigo != null)
@@ -36,7 +40,5 @@ public class ContenedorNivel9Controller : MonoBehaviour
                 enemigo.SetActive(false);
             }
         }
-
-        Debug.Log("Nivel 9 completado.");
     }
 }

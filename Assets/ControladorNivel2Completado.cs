@@ -1,52 +1,45 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ControladorNivel2Completado : MonoBehaviour
 {
-    // Lista de enemigos que deben ser eliminados para completar el nivel
-    public List<GameObject> enemigosDelNivel;
-
-    void Start()
-    {
-        // Aquí puedes inicializar o comprobar si tienes enemigos en la escena
-        // Asegúrate de asignar los enemigos manualmente o encontrar todos los enemigos automáticamente
-    }
+    // Referencia a los enemigos del nivel 2
+    public GameObject[] enemigosDelNivel;
 
     void Update()
     {
+        bool todosEliminados = true;
+
         // Verificar si todos los enemigos han sido eliminados
-        if (enemigosDelNivel.Count == 0)
+        foreach (GameObject enemigo in enemigosDelNivel)
+        {
+            if (enemigo != null) // Si algún enemigo sigue existiendo
+            {
+                todosEliminados = false;
+                break;
+            }
+        }
+
+        if (todosEliminados)
         {
             CompletarNivel2();
         }
     }
 
-    // Método que se llama cuando el nivel se completa
     void CompletarNivel2()
     {
-        // Marca el nivel 2 como completado
+        // Marca el nivel 3 como completado
         GestorDeNivelesGlobal.MarcarNivelComoCompletado(2);
-        Debug.Log("Nivel 2 completado. Actualizando estado.");
+        Debug.Log("Nivel 2 completado.");
 
-        // Actualizar las esferas del mapa
-        ControladorEsferasMapa controladorEsferas = FindObjectOfType<ControladorEsferasMapa>();
-        if (controladorEsferas != null)
+        // Desactivar enemigos restantes (si es necesario)
+        // Desactivar enemigos restantes (si es necesario)
+        foreach (GameObject enemigo in enemigosDelNivel)
         {
-            controladorEsferas.ActualizarEsferas(); // Actualiza las esferas en el mapa
-        }
-        else
-        {
-            Debug.LogError("ControladorEsferasMapa no encontrado en la escena.");
-        }
-    }
-
-    // Este método puede ser llamado cuando un enemigo es destruido o eliminado
-    public void EliminarEnemigo(GameObject enemigo)
-    {
-        if (enemigosDelNivel.Contains(enemigo))
-        {
-            enemigosDelNivel.Remove(enemigo);
+            if (enemigo != null)
+            {
+                enemigo.SetActive(false);
+            }
         }
     }
 }

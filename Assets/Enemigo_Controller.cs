@@ -58,7 +58,7 @@ public void OnTriggerEnter2D(Collider2D other)
     if (other.CompareTag("Player"))
     {
         Debug.Log("Player detectado. Mostrando pregunta.");
-        gestorPreguntas.MostrarPregunta(this); // Pasar este enemigo como referencia
+        gestorPreguntas.MostrarPregunta(this.gameObject); // Pasar este enemigo como referencia
 
         isMoving = false; // Opcional: detener el movimiento
         rb.velocity = Vector2.zero;

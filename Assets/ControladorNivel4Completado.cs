@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ContenedorNivel4Controller : MonoBehaviour
+public class ControladorNivel4Completado : MonoBehaviour
 {
     // Referencia a los enemigos del nivel 4
     public GameObject[] enemigosNivel4;
@@ -10,9 +10,10 @@ public class ContenedorNivel4Controller : MonoBehaviour
     {
         bool todosEliminados = true;
 
+        // Verificar si todos los enemigos han sido eliminados
         foreach (GameObject enemigo in enemigosNivel4)
         {
-            if (enemigo != null)
+            if (enemigo != null) // Si algún enemigo sigue existiendo
             {
                 todosEliminados = false;
                 break;
@@ -27,8 +28,11 @@ public class ContenedorNivel4Controller : MonoBehaviour
 
     void CompletarNivel4()
     {
+        // Marca el nivel 4 como completado
         GestorDeNivelesGlobal.MarcarNivelComoCompletado(4);
-        
+        Debug.Log("Nivel 4 completado.");
+
+        // Desactivar enemigos restantes (si es necesario)
         foreach (GameObject enemigo in enemigosNivel4)
         {
             if (enemigo != null)
@@ -37,6 +41,6 @@ public class ContenedorNivel4Controller : MonoBehaviour
             }
         }
 
-        Debug.Log("Nivel 4 completado.");
+        // Aquí puedes agregar otras lógicas si es necesario para completar el nivel
     }
 }
