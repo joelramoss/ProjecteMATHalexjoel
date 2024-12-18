@@ -14,6 +14,9 @@ public class Dragon_Controller1 : MonoBehaviour
     private Vector2 moveDirection = Vector2.down; // Dirección inicial vertical (bajando)
     private float horizontalDirection = -1f;      // Dirección horizontal inicial (hacia la izquierda)
 
+    // Referencia al sistema de partículas de fuego
+    public ParticleSystem fireParticleSystem;
+
     void Start()
     {
         // Obtener el Rigidbody2D
@@ -23,7 +26,6 @@ public class Dragon_Controller1 : MonoBehaviour
             Debug.LogError("No se encontró un componente Rigidbody2D en el GameObject.");
 
         // Ignorar colisiones entre el dragón y el Player
-
     }
 
     void Update()
@@ -54,6 +56,13 @@ public class Dragon_Controller1 : MonoBehaviour
             gestorPreguntas.MostrarPregunta(this);
             // Detener el movimiento del dragón (opcional, si no quieres que se mueva)
             rb.velocity = Vector2.zero; // Detener cualquier movimiento actual
+            // Activar el fuego
+            if (fireParticleSystem != null)
+            {
+                fireParticleSystem.Play(); // Iniciar el fuego
+            }
+            // Llamar a una corutina para apagar el fuego después de un tiempo
+            StartCoroutine(DetenerFuegoConTiempo(2f)); // Detener el fuego después de 2 segundos
             return; // Salir del método, evitando que se ejecute cualquier otra lógica
         }
 
@@ -78,6 +87,16 @@ public class Dragon_Controller1 : MonoBehaviour
                 horizontalDirection = -1f; // Cambiar dirección a izquierda
                 Debug.Log("Dirección horizontal invertida: Izquierda");
             }
+        }
+    }
+
+    // Corutina para detener el fuego después de un tiempo determinado
+    private IEnumerator DetenerFuegoConTiempo(float tiempo)
+    {
+        yield return new WaitForSeconds(tiempo); // Espera el tiempo definido
+        if (fireParticleSystem != null)
+        {
+            fireParticleSystem.Stop(); // Detiene el fuego
         }
     }
 }
