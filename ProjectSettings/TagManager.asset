@@ -10,6 +10,7 @@ TagManager:
   - TriggerArriba
   - TriggerAbajo
   - dragon
+  - finizquierda
   layers:
   - Default
   - TransparentFX

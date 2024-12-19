@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
     {
         ProcesarMovimiento();
         ProcesarSalto();
-        Debug.Log(estaEnSuelo);
     }
 
     void ProcesarMovimiento()

@@ -1,4 +1,6 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GestorDeNivelesGlobal : MonoBehaviour
 {
@@ -52,6 +54,9 @@ public class GestorDeNivelesGlobal : MonoBehaviour
             default:
                 Debug.LogWarning("Nivel no válido.");
                 break;
+        }
+        if (Nivel10Pasado){
+            SceneManager.LoadScene("fin_ganado");
         }
     }
 }

@@ -40,5 +40,7 @@ public class ControladorNivel10Completado : MonoBehaviour
                 enemigo.SetActive(false);
             }
         }
+               
+        }
     }
-}
+
