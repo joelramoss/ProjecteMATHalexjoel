@@ -49257,7 +49257,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!114 &2042672034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49453,7 +49453,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!114 &2097674308
 MonoBehaviour:
   m_ObjectHideFlags: 0
