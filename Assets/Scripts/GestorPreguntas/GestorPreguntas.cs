@@ -79,7 +79,6 @@ public class GestorPreguntas : MonoBehaviour
         preguntas.Add(new Pregunta("Com s'anomena la línia que divideix un triangle per la meitat?", new string[] { "Mediana", "Bisectriu", "Alçada" }, 0));
         preguntas.Add(new Pregunta("Què és l'àrea d'un cercle?", new string[] { "Àrea = πr²", "Àrea = 2πr", "Àrea = 4r" }, 0));
 
-        // Añadir más preguntas según sea necesario...
 
         // Verificaciones iniciales
         if (preguntas.Count == 0)
