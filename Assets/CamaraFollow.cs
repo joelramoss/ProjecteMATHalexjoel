@@ -13,9 +13,6 @@ public class CameraFollow2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Verifica que el objeto a seguir está asignado
-        if (target != null)
-        {
             // Calcula la posición deseada, manteniendo el offset en X y Z, pero ajustando Y
             Vector3 desiredPosition = target.position + offset;
 
@@ -27,10 +24,5 @@ public class CameraFollow2D : MonoBehaviour
 
             // Establece la nueva posición de la cámara
             transform.position = smoothedPosition;
-        }
-        else
-        {
-            Debug.LogError("No se asignó un objeto al campo 'Target' en el script CameraFollow2D.");
-        }
     }
 }
