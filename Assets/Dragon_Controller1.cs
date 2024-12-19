@@ -15,7 +15,6 @@ public class Dragon_Controller1 : MonoBehaviour
     private float horizontalDirection = -1f;      // Dirección horizontal inicial (hacia la izquierda)
 
     // Referencia al sistema de partículas de fuego
-    public ParticleSystem fireParticleSystem;
 
     void Start()
     {
@@ -53,16 +52,10 @@ public class Dragon_Controller1 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player detectado. Mostrando pregunta.");
-            gestorPreguntas.MostrarPregunta(this);
+            gestorPreguntas.MostrarPregunta(this.gameObject);
             // Detener el movimiento del dragón (opcional, si no quieres que se mueva)
             rb.velocity = Vector2.zero; // Detener cualquier movimiento actual
             // Activar el fuego
-            if (fireParticleSystem != null)
-            {
-                fireParticleSystem.Play(); // Iniciar el fuego
-            }
-            // Llamar a una corutina para apagar el fuego después de un tiempo
-            StartCoroutine(DetenerFuegoConTiempo(2f)); // Detener el fuego después de 2 segundos
             return; // Salir del método, evitando que se ejecute cualquier otra lógica
         }
 
@@ -91,12 +84,4 @@ public class Dragon_Controller1 : MonoBehaviour
     }
 
     // Corutina para detener el fuego después de un tiempo determinado
-    private IEnumerator DetenerFuegoConTiempo(float tiempo)
-    {
-        yield return new WaitForSeconds(tiempo); // Espera el tiempo definido
-        if (fireParticleSystem != null)
-        {
-            fireParticleSystem.Stop(); // Detiene el fuego
-        }
-    }
 }

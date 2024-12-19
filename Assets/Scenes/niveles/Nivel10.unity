@@ -49546,9 +49546,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd72a11e74329144a99a90d87a13b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gestorPreguntas: {fileID: 0}
+  gestorPreguntas: {fileID: 65728368}
   verticalSpeed: 2
   horizontalSpeed: 1.5
+  fireParticleSystem: {fileID: 0}
 --- !u!1 &1848107976
 GameObject:
   m_ObjectHideFlags: 0
