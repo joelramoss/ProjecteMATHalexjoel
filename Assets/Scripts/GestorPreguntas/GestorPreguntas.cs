@@ -164,44 +164,46 @@ public class GestorPreguntas : MonoBehaviour
         }
     }
 
-    public void MostrarPregunta(GameObject enemigo)
+public void MostrarPregunta(GameObject enemigo)
+{
+    enemigoActual = enemigo;
+
+    if (preguntes.Count == 0)
     {
-        enemigoActual = enemigo;
-
-        if (preguntes.Count == 0)
-        {
-            Debug.Log("No quedan preguntas disponibles.");
-            return;
-        }
-
-        int indicePregunta = Random.Range(0, preguntes.Count);
-
-        preguntaActual = preguntes[indicePregunta];
-        opcionesPreguntaActual = opcions[indicePregunta];
-        indiceRespuestaCorrecta = respostesCorrectes[indicePregunta];
-
-        textoPregunta.text = preguntaActual;
-
-        for (int i = 0; i < botonesOpciones.Length; i++)
-        {
-            TextMeshProUGUI textoBoton = botonesOpciones[i].GetComponentInChildren<TextMeshProUGUI>();
-            if (textoBoton != null)
-            {
-                textoBoton.text = opcionesPreguntaActual[i];
-                int indice = i;
-                botonesOpciones[i].onClick.RemoveAllListeners();
-                botonesOpciones[i].onClick.AddListener(() => ValidarRespuesta(indice));
-            }
-        }
-
-        fondoBlanco.SetActive(true);
-        panelPregunta.SetActive(true);
-
-        // Eliminar la pregunta usada
-        preguntes.RemoveAt(indicePregunta);
-        opcions.RemoveAt(indicePregunta);
-        respostesCorrectes.RemoveAt(indicePregunta);
+        Debug.Log("No quedan preguntas disponibles.");
+        return;
     }
+
+    int indicePregunta = Random.Range(0, preguntes.Count);
+
+    preguntaActual = preguntes[indicePregunta];
+    opcionesPreguntaActual = opcions[indicePregunta];
+    indiceRespuestaCorrecta = respostesCorrectes[indicePregunta];
+
+    textoPregunta.text = preguntaActual;
+
+    for (int i = 0; i < botonesOpciones.Length; i++)
+    {
+        TextMeshProUGUI textoBoton = botonesOpciones[i].GetComponentInChildren<TextMeshProUGUI>();
+        if (textoBoton != null)
+        {
+            textoBoton.text = opcionesPreguntaActual[i];
+            int indice = i;
+            botonesOpciones[i].onClick.RemoveAllListeners();
+            botonesOpciones[i].onClick.AddListener(() => ValidarRespuesta(indice));
+        }
+    }
+
+    fondoBlanco.SetActive(true);
+    panelPregunta.SetActive(true);
+
+    // Eliminar la pregunta usada
+    preguntes.RemoveAt(indicePregunta);
+    opcions.RemoveAt(indicePregunta);
+    respostesCorrectes.RemoveAt(indicePregunta);
+}
+
+
 
     private void ValidarRespuesta(int indiceSeleccionado)
     {

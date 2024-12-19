@@ -14,11 +14,6 @@ public class PlayerController : MonoBehaviour
     private Animator Animator;
 
     // Límites automáticos del área de juego
-    private float limiteIzquierdo;
-    private float limiteDerecho;
-    private float limiteSuperior;
-    private float limiteInferior = -11f;  
-    
     public  int vida = 3;
     // Establecer el límite inferior en -11
 
@@ -45,6 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         ProcesarMovimiento();
         ProcesarSalto();
+        Debug.Log(estaEnSuelo);
     }
 
     void ProcesarMovimiento()
@@ -62,17 +58,6 @@ public class PlayerController : MonoBehaviour
 
         rigidBody.velocity = new Vector2(inputMovimiento * velocidad, rigidBody.velocity.y);
         GestionarOrientacion(inputMovimiento);
-    }
-
-    void LimitarMovimiento()
-    {
-        // Limitar la posición del jugador en el eje X e Y solo para los límites que deseas mantener
-        float xPos = Mathf.Clamp(transform.position.x, limiteIzquierdo, limiteDerecho);
-
-        // No limitar el eje Y hacia arriba
-        float yPos = Mathf.Max(transform.position.y, limiteInferior);
-
-        transform.position = new Vector2(xPos, yPos);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -117,27 +102,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CalcularLimites()
-    {
-        Camera camara = Camera.main;
-        float altura = 2f * camara.orthographicSize; // Altura de la cámara
-        float ancho = altura * camara.aspect; // Ancho de la cámara
-
-        // Definir límites basados en la posición y el tamaño de la cámara
-        limiteIzquierdo = camara.transform.position.x - ancho / 2f;
-        limiteDerecho = camara.transform.position.x + ancho / 2f;
-        limiteSuperior = camara.transform.position.y + altura / 2f;
-
-        Debug.Log("Limites calculados: " + limiteIzquierdo + ", " + limiteDerecho + ", " + limiteSuperior);
-    }
 
     // Función para restablecer la posición a la inicial
-    void RestablecerPosicion()
-    {
-        transform.position = posicionInicial;  // Restaurar la posición inicial
-        rigidBody.velocity = Vector2.zero;  // Detener cualquier movimiento residual
-        Debug.Log("El personaje ha caído fuera del área y ha vuelto a la posición inicial.");
-    }
 
 
     

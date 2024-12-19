@@ -44,4 +44,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/niveles/Nivel10.unity
     guid: 3820c550c9654de4093017478d14d530
+  - enabled: 1
+    path: Assets/Scenes/ComJugar.unity
+    guid: 628e5227d56426348b3fe55062d85723
+  - enabled: 1
+    path: Assets/Scenes/fin_perdido.unity
+    guid: 0b5ea758225cd754490f456b2228a63d
+  - enabled: 1
+    path: Assets/Scenes/fin_ganado.unity
+    guid: 74bfd1cefe751b648a77a35feb3303bd
   m_configObjects: {}
